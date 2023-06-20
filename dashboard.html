@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<!-- Website - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <style>
+    
+      /* Google Font Link */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+.sidebar{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 78px;
+  background: #11101D;
+  padding: 6px 14px;
+  z-index: 99;
+  transition: all 0.5s ease;
+}
+.sidebar.open{
+  width: 250px;
+}
+.sidebar .logo-details{
+  height: 60px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.sidebar .logo-details .icon{
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar .logo-details .logo_name{
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  opacity: 0;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details .icon,
+.sidebar.open .logo-details .logo_name{
+  opacity: 1;
+}
+.sidebar .logo-details #btn{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  transition: all 0.4s ease;
+  font-size: 23px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.sidebar.open .logo-details #btn{
+  text-align: right;
+}
+.sidebar i{
+  color: #fff;
+  height: 60px;
+  min-width: 50px;
+  font-size: 28px;
+  text-align: center;
+  line-height: 60px;
+}
+.sidebar .nav-list{
+  margin-top: 20px;
+  height: 100%;
+}
+.sidebar li{
+  position: relative;
+  margin: 8px 0;
+  list-style: none;
+}
+.sidebar li .tooltip{
+  position: absolute;
+  top: -20px;
+  left: calc(100% + 15px);
+  z-index: 3;
+  background: #fff;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 15px;
+  font-weight: 400;
+  opacity: 0;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: 0s;
+}
+.sidebar li:hover .tooltip{
+  opacity: 1;
+  pointer-events: auto;
+  transition: all 0.4s ease;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.sidebar.open li .tooltip{
+  display: none;
+}
+.sidebar input{
+  font-size: 15px;
+  color: #FFF;
+  font-weight: 400;
+  outline: none;
+  height: 50px;
+  width: 100%;
+  width: 50px;
+  border: none;
+  border-radius: 12px;
+  transition: all 0.5s ease;
+  background: #1d1b31;
+}
+.sidebar.open input{
+  padding: 0 20px 0 50px;
+  width: 100%;
+}
+.sidebar .bx-search{
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  font-size: 22px;
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar.open .bx-search:hover{
+  background: #1d1b31;
+  color: #FFF;
+}
+.sidebar .bx-search:hover{
+  background: #FFF;
+  color: #11101d;
+}
+.sidebar li a{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  border-radius: 12px;
+  align-items: center;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  background: #11101D;
+}
+.sidebar li a:hover{
+  background: #FFF;
+}
+.sidebar li a .links_name{
+  color: #fff;
+  font-size: 15px;
+  font-weight: 400;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s;
+}
+.sidebar.open li a .links_name{
+  opacity: 1;
+  pointer-events: auto;
+}
+.sidebar li a:hover .links_name,
+.sidebar li a:hover i{
+  transition: all 0.5s ease;
+  color: #11101D;
+}
+.sidebar li i{
+  height: 50px;
+  line-height: 50px;
+  font-size: 18px;
+  border-radius: 12px;
+}
+.sidebar li.profile{
+  position: fixed;
+  height: 60px;
+  width: 78px;
+  left: 0;
+  bottom: -8px;
+  padding: 10px 14px;
+  background: #1d1b31;
+  transition: all 0.5s ease;
+  overflow: hidden;
+}
+.sidebar.open li.profile{
+  width: 250px;
+}
+.sidebar li .profile-details{
+  display: flex;
+  align-items: center;
+  flex-wrap: nowrap;
+}
+.sidebar li img{
+  height: 45px;
+  width: 45px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 10px;
+}
+.sidebar li.profile .name,
+.sidebar li.profile .job{
+  font-size: 15px;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+}
+.sidebar li.profile .job{
+  font-size: 12px;
+}
+.sidebar .profile #log_out{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+  background: #1d1b31;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  border-radius: 0px;
+  transition: all 0.5s ease;
+}
+.sidebar.open .profile #log_out{
+  width: 50px;
+  background: none;
+}
+.home-section{
+  position: relative;
+  /* background: #E4E9F7; */
+  min-height: 100vh;
+  top: 0;
+  left: 78px;
+  width: calc(100% - 78px);
+  transition: all 0.5s ease;
+  z-index: 2;
+}
+.sidebar.open ~ .home-section{
+  left: 250px;
+  width: calc(100% - 250px);
+}
+.home-section .text{
+  display: inline-block;
+  color: #11101d;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 18px
+}
+@media (max-width: 420px) {
+  .sidebar li .tooltip{
+    display: none;
+  }
+}
+
+      /* own css */
+      .home-section#AllProd {
+        display: none;
+      }
+      .home-section#User {
+        display: none;
+      }
+      .home-section#Cart {
+        display: none;
+      }
+      .image-widt{
+        width: 150px;
+        height: 150px;
+      }
+      
+    </style>
+    
+    <meta charset="UTF-8" />
+    <title>Master Tech</title>
+    
+    <!-- Boxicons CDN Link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+    <link href="https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+  <body>
+    <script>
+      const isLoggedIn = sessionStorage.getItem('isLoggedIn');
+if (!isLoggedIn) {
+  // Redirect to login page
+  window.location.href = 'index.html';
+}
+
+    </script>
+    <div class="sidebar">
+      <div class="logo-details">
+        <!-- <i class="bx bxl-c-plus-plus icon"></i> -->
+        <div class="logo_name">Products</div>
+        <i class="bx bx-menu" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <i class="bx bx-search"></i>
+          <input type="text" placeholder="Search..." />
+          <span class="tooltip">Search</span>
+        </li>
+        <li>
+          <a href="#dash" onclick="showDashboard()">
+            <i class="bx bx-grid-alt"></i>
+            <span class="links_name">Dashboard</span>
+          </a>
+          <span class="tooltip">Dashboard</span>
+        </li>
+        <li>
+          <a href="#User" id="showDetailsButton" onclick="showUser()">
+            <i class="bx bx-user"></i>
+            <span class="links_name">User</span>
+          </a>
+          <span class="tooltip">User</span>
+        </li>
+        <li>
+          <a href="#AllProd" onclick="showAllProducts()">
+            <i class="bx bx-chat"></i>
+            <span class="links_name">Products</span>
+          </a>
+          <span class="tooltip">Products</span>
+        </li>
+        <li>
+          <a href="#Cart" onclick="showCart()">
+            <i class="bx bx-cart-alt"></i>
+            <span class="links_name">Cart</span>
+          </a>
+          <span class="tooltip">Cart</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-pie-chart-alt-2"></i>
+            <span class="links_name">Analytics</span>
+          </a>
+          <span class="tooltip">Analytics</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-folder"></i>
+            <span class="links_name">File Manager</span>
+          </a>
+          <span class="tooltip">Files</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-heart"></i>
+            <span class="links_name">Saved</span>
+          </a>
+          <span class="tooltip">Saved</span>
+        </li>
+        <li>
+          <a href="#">
+            <i class="bx bx-cog"></i>
+            <span class="links_name">Setting</span>
+          </a>
+          <span class="tooltip">Setting</span>
+        </li>
+        <li class="profile">
+          <div class="profile-details">
+            <!-- <img src="profile.jpg" alt="profileImg" /> -->
+            <div class="name_job">
+              <div class="name">Master Tech</div>
+              <div class="job"></div>
+            </div>
+          </div>
+          <i class="bx bx-log-out" id="log_out"></i>
+        </li>
+      </ul>
+    </div>
+    <section class="home-section" id="dash">
+      <div class="text">
+        <h4>Dashboard</h4>
+        <p>Welcome to Master Tech, 
+          your ultimate destination for all your tech needs! We are proud to offer a wide range of high-quality products
+           designed to enhance your everyday life. From state-of-the-art water bottles to innovative tiffin boxes, 
+           we have everything you need to stay hydrated and organized on the go.</p><br>
+           <p>At Master Tech, we understand the importance of convenience and functionality. That's why we carefully curate our selection to ensure that each product meets our stringent standards of quality, durability, and style. Whether you're a busy professional, a student, or a fitness enthusiast, our products are designed to seamlessly integrate into your lifestyle.</p>
+           <br>
+           <p>Discover the world of convenience, style, and innovation with Master Tech. Shop now and elevate your everyday life with our premium selection of products.</p>
+      </div>
+    </section>
+    <section class="home-section" id="AllProd">
+      <div class="container-fluid">
+      <div class="text">
+        <h4>All Products</h4>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Category
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#" onclick="selectOption('all')">All</a>
+            <a class="dropdown-item" href="#" onclick="selectOption('Water Bottle')">Water Bottle</a>
+            <a class="dropdown-item" href="#" onclick="selectOption('Food Container')">Food Container</a>
+          </div>
+        </div>
+        <br>
+        <!-- End Drop Down -->
+        <div class="table-responsive table-responsive-sm">
+          <table id="productTable" class="table table-hover">
+            <thead>
+              <tr>
+                <th>Category</th>
+                <th>Product Name</th>
+                <th>Original Price</th>
+                <th>Offer Price</th>
+                <th>Product Image</th>
+                <th>Flipkart Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="category-water-bottle">
+                <td>Water Bottle</td>
+                <td>Steel Bottle</td>
+                <td>368</td>
+                <td>300</td>
+                <td><img class="image-widt" src="https://rukminim1.flixcart.com/image/416/416/kkh6zrk0/bottle/y/y/0/1000-super-1000-single-wall-stainless-steel-bottle-1-us-0053-original-imafzthmbkqzwvbw.jpeg?q=70" alt="Product 1"></td>
+                <td><a target="_blank" href="https://www.flipkart.com/milton-super-1000-single-wall-stainless-steel-bottle-ml/p/itm64664b3dddc89?pid=BOTFZTHZKTFJVYYM&lid=LSTBOTFZTHZKTFJVYYM55Z0US&marketplace=FLIPKART&cmpid=content_bottle_20259658016_x_8965229628_gmc_pla&tgi=sem,1,G,11214002,x,,,,,,,c,,,,,,,&gclid=CjwKCAjw-b-kBhB-EiwA4fvKrP0uB1__pqZUl-CvJYdRKvWGvpwUzr60In6A2-y31sz7DMyA3HsAgBoC4z0QAvD_BwE">Link</a></td>
+              </tr>
+              <tr class="category-food-container">
+                <td>Food Container</td>
+                <td>Milton Pro</td>
+                <td>997</td>
+                <td>850</td>
+                <td><img class="image-widt" src="https://rukminim1.flixcart.com/image/416/416/xif0q/lunch-box/c/t/9/1900-pro-lunch-box-3-containers-1-chutney-dabba-1-bottle-spoon-original-imagkf9vy7c3nhyy.jpeg?q=70" alt="Product 2"></td>
+                <td><a target="_blank" href="https://www.flipkart.com/milton-pro-lunch-box-3-containers-1-chutney-dabba-bottle-spoon-fork-jacket-4-containers/p/itmeb70fc24a1f23?pid=LBXGKF9VHQDZZSHT&lid=LSTLBXGKF9VHQDZZSHT1U9OJ6&marketplace=FLIPKART&q=milton+pro+lunch+box&store=upp%2Fbqi&spotlightTagId=FkPickId_upp%2Fbqi&srno=s_1_3&otracker=AS_QueryStore_OrganicAutoSuggest_1_13_na_na_ps&otracker1=AS_QueryStore_OrganicAutoSuggest_1_13_na_na_ps&fm=search-autosuggest&iid=b2b4c678-83c4-49d1-b163-36a460c15d76.LBXGKF9VHQDZZSHT.SEARCH&ppt=sp&ppn=sp&ssid=25d95bnikg0000001687242070573&qH=8d19d0ccd9777695">Link</a></td>
+              </tr>
+              <tr class="category-water-bottle">
+                <td>Water Bottle</td>
+                <td>Thermosteel Bottle</td>
+                <td>661</td>
+                <td>520</td>
+                <td><img class="image-widt" src="https://rukminim1.flixcart.com/image/416/416/l4rd0280/bottle/i/8/j/520-aura-500-thermosteel-bottle-520-ml-black-24-hours-hot-and-original-imagfkxz2ezffzhf.jpeg?q=70" alt="Product 1"></td>
+                <td><a target="_blank" href="https://www.flipkart.com/milton-aura-500-thermosteel-bottle-520-ml-black-24-hours-hot-cold-ml-flask/p/itm8b624c2cc381d?pid=BOTGFKXZK4YKSYBS&lid=LSTBOTGFKXZK4YKSYBSRTBPGE&marketplace=FLIPKART&q=milton+aura+500&store=upp&srno=s_1_4&otracker=AS_Query_OrganicAutoSuggest_1_15_na_na_na&otracker1=AS_Query_OrganicAutoSuggest_1_15_na_na_na&fm=search-autosuggest&iid=1af011bc-bd2f-4a74-8bc7-20c04cf8ad71.BOTGFKXZK4YKSYBS.SEARCH&ppt=sp&ppn=sp&ssid=phxfwzpf3k0000001687242681336&qH=a33f4d4adec91596">Link</a></td>
+              </tr>
+              <tr class="category-food-container">
+                <td>Food Container</td>
+                <td>MILTON New Steel Combi</td>
+                <td>575</td>
+                <td>460</td>
+                <td><img class="image-widt" src="https://rukminim1.flixcart.com/image/416/416/kwtkxow0/lunch-box/o/x/k/new-steel-combi-lunch-box-3-containers-and-1-tumbler-with-jacket-original-imag9ezmgkvrsdwm.jpeg?q=70" alt="Product 2"></td>
+                <td><a target="_blank" href="https://www.amazon.in/Milton-Containers-Tumbler-Jacket-Dishwasher/dp/B09N3FM2XH/ref=asc_df_B09N3FM2XH/?tag=googleshopdes-21&linkCode=df0&hvadid=566311613477&hvpos=&hvnetw=g&hvrand=16193695721380401209&hvpone=&hvptwo=&hvqmt=&hvdev=c&hvdvcmdl=&hvlocint=&hvlocphy=1007809&hvtargid=pla-1600730681701&psc=1">Link</a></td>
+              </tr>
+              <!-- Add more rows for other products -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    </section>
+    
+    
+    <section class="home-section" id="User">
+      <div class="text"><h4>User</h4>
+        <div id="userDetails"></div>
+      </div>
+      </div>
+    </section>
+    <section class="home-section" id="Cart">
+      <div class="text">
+        <h4>Cart</h4>
+        <div style="display: flex; justify-content: center;"> <!-- Added custom style -->
+          <table id="cartTable" class="table table-hover" style="width: auto;">
+            <thead>
+              <tr>
+                <th>Product Name</th>
+                <th>Original Price</th>
+                <th>Offer Price</th>
+                <th>Flipkart Link</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- <tr>
+                <td></td>
+                <td></td>
+              </tr> -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-4">
+            <input class="form-control" id="TotalPrice" readonly style="width: 200px;">
+            <label class="form-label">Total Price</label> <br>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" id="OfferPrice" readonly style="width: 200px;">
+            <label class="form-label">Offer Price</label><br>
+          </div>
+          <div class="col-md-4">
+            <input class="form-control" id="YourSavings" readonly style="width: 200px;">
+            <label class="form-label">Savings</label><br>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <button class="btn btn-primary" id="placeOrder">Place Order</button>
+        </div>
+      </div>     
+      <!-- <button style="justify-content: center;" class="btn btn-primary" id="placeOrder">Place Order</button> -->
+      </div>
+    </section>
+    
+    <!-- Bootstrap Modal -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="confirmModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="confirmModalLabel">Confirmation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p id="confirmMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="addToCartBtn">Add</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <script>
+
+  // Get the table rows
+  var rows = document.querySelectorAll('#productTable tbody tr');
+
+rows.forEach(function(row) {
+  row.addEventListener('click', function() {
+    var productName = row.querySelector('td:nth-child(2)').textContent;
+    var originalPrice = row.querySelector('td:nth-child(3)').textContent;
+    var offerPrice = row.querySelector('td:nth-child(4)').textContent;
+    var flipkartLink = row.querySelector('td:nth-child(6) a').href;
+
+    var confirmMessage = 'Do you want to add this product (' + productName + ') to cart?';
+    document.getElementById('confirmMessage').textContent = confirmMessage;
+    $('#confirmModal').modal('show');
+    
+    var addToCartBtn = document.getElementById('addToCartBtn');
+    
+    // Remove previous event listeners
+    addToCartBtn.removeEventListener('click', addToCartHandler);
+    
+    // Add a new event listener
+    addToCartBtn.addEventListener('click', addToCartHandler);
+    
+    function addToCartHandler() {
+      addToCart(productName, originalPrice, offerPrice, flipkartLink);
+      addToCartBtn.removeEventListener('click', addToCartHandler);
+    }
+  });
+});
+
+function addToCart(productName, originalPrice, offerPrice, flipkartLink) {
+  var cartTable = document.getElementById('cartTable').getElementsByTagName('tbody')[0];
+
+  var row = cartTable.insertRow();
+  var productNameCell = row.insertCell(0);
+  var originalPriceCell = row.insertCell(1);
+  var offerPriceCell = row.insertCell(2);
+  var flipkartLinkCell = row.insertCell(3);
+
+  productNameCell.textContent = productName;
+  originalPriceCell.textContent = originalPrice;
+  offerPriceCell.textContent = offerPrice;
+  flipkartLinkCell.innerHTML = `<a href="${flipkartLink}" target="_blank">Link</a>`;
+
+  // Calculate and store the total value
+  var offerPriceInput = document.getElementById('OfferPrice');
+  var offrValue = parseFloat(offerPriceInput.value);
+
+  var originalPriceInput = document.getElementById('TotalPrice');
+  var origiValue = parseFloat(originalPriceInput.value);
+
+  if (isNaN(offrValue)) {
+    offrValue = 0;
+  }
+  if (isNaN(origiValue)) {
+    origiValue = 0;
+  }
+
+  offrValue += parseFloat(offerPrice);
+  offerPriceInput.value = offrValue.toFixed(2);
+
+  origiValue += parseFloat(originalPrice);
+  originalPriceInput.value = origiValue.toFixed(2);
+
+  // Calculate and set the savings
+  var savingsInput = document.getElementById('YourSavings');
+  var savingsValue = origiValue - offrValue;
+  savingsInput.value = savingsValue.toFixed(2);
+
+  $('#confirmModal').modal('hide');
+}
+
+
+
+
+// Get the close button element
+var closeButton = document.querySelector('#confirmModal .close');
+// Get the cancel button element
+var cancelButton = document.querySelector('#confirmModal .modal-footer .btn-secondary');
+
+// Add a click event listener to both the close button and the cancel button
+closeButton.addEventListener('click', closeModal);
+cancelButton.addEventListener('click', closeModal);
+
+// Function to close the modal
+function closeModal() {
+  // Hide the modal using Bootstrap's modal('hide') method
+  $('#confirmModal').modal('hide');
+}
+
+
+
+      let sidebar = document.querySelector(".sidebar");
+let closeBtn = document.querySelector("#btn");
+let searchBtn = document.querySelector(".bx-search");
+
+closeBtn.addEventListener("click", ()=>{
+  sidebar.classList.toggle("open");
+  menuBtnChange();//calling the function(optional)
+});
+
+searchBtn.addEventListener("click", ()=>{ // Sidebar open when you click on the search iocn
+  sidebar.classList.toggle("open");
+  menuBtnChange(); //calling the function(optional)
+});
+
+// following are the code to change sidebar button(optional)
+function menuBtnChange() {
+ if(sidebar.classList.contains("open")){
+   closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+ }else {
+   closeBtn.classList.replace("bx-menu-alt-right","bx-menu");//replacing the iocns class
+ }
+}
+// own script
+
+      function showAllProducts() {
+        var dashboardSection = document.getElementById("dash");
+      var allProdSection = document.getElementById("AllProd");
+      var userSection = document.getElementById("User");
+      var cartSection = document.getElementById("Cart");
+
+      dashboardSection.style.display = "none";
+      allProdSection.style.display = "block";
+      userSection.style.display = "none";
+      cartSection.style.display = "none";
+      }
+      function showUser() {
+      var dashboardSection = document.getElementById("dash");
+      var allProdSection = document.getElementById("AllProd");
+      var userSection = document.getElementById("User");
+      var cartSection = document.getElementById("Cart");
+
+      dashboardSection.style.display = "none";
+      allProdSection.style.display = "none";
+      userSection.style.display = "block";
+      cartSection.style.display = "none";
+    }
+
+    function showDashboard() {
+      var dashboardSection = document.getElementById("dash");
+      var allProdSection = document.getElementById("AllProd");
+      var userSection = document.getElementById("User");
+      var cartSection = document.getElementById("Cart");
+
+      dashboardSection.style.display = "block";
+      allProdSection.style.display = "none";
+      userSection.style.display = "none";
+      cartSection.style.display = "none";
+    }
+
+    function showCart() {
+      var dashboardSection = document.getElementById("dash");
+      var allProdSection = document.getElementById("AllProd");
+      var userSection = document.getElementById("User");
+      var cartSection = document.getElementById("Cart");
+
+      dashboardSection.style.display = "none";
+      allProdSection.style.display = "none";
+      userSection.style.display = "none";
+      cartSection.style.display = "block";
+    }
+
+
+// Fetch User Details
+// Retrieve user details from sessionStorage
+const userDetails = sessionStorage.getItem('userDetails');
+if (userDetails) {
+  const user = JSON.parse(userDetails);
+
+  // Combine City and Address
+  const completeAddress = `${user.address}, ${user.city}, ${user.pincode}`;
+
+  // Display user details
+  const userDetailsDiv = document.getElementById('userDetails');
+  userDetailsDiv.innerHTML = `
+    <p>Hi, ${user.username}!</p>
+    <p>Welcome to Our Master Tech Family<p>
+    <p>Email: ${user.email}</p>
+    <p>Date of Birth: ${user.dateOfBirth}</p>
+    <p>Phone Number: ${user.phoneNumber}</p>
+    <p>Complete Address: ${completeAddress}</p>
+  `;
+
+  const showDetailsButton = document.getElementById('showDetailsButton');
+  showDetailsButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    userDetailsDiv.style.display = 'block';
+  });
+} else {
+  const userDetailsDiv = document.getElementById('userDetails');
+  userDetailsDiv.style.display = 'none';
+}
+  //For dwopdown
+  function selectOption(option) {
+    document.getElementById("dropdownMenuButton").textContent = option;
+  }
+
+
+  function selectOption(category) {
+  var productTable = document.getElementById("productTable");
+  var tableRows = productTable.getElementsByTagName("tr");
+
+  // Iterate through each row of the table starting from index 1 (excluding the header row)
+  for (var i = 1; i < tableRows.length; i++) {
+    var row = tableRows[i];
+
+    if (category === "all" || row.classList.contains("category-" + category.toLowerCase().replace(" ", "-"))) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  }
+}
+
+//to whatsapp
+// Fetch User Details
+// Retrieve user details from sessionStorage
+// const userDetails = sessionStorage.getItem('userDetails');
+if (userDetails) {
+  const user = JSON.parse(userDetails);
+
+  // Display user details
+  const userDetailsDiv = document.getElementById('userDetails');
+  // userDetailsDiv.innerHTML = `
+  //   <p>Hi, ${user.username}!</p>
+  //   <p>Welcome to Our Master Tech Family<p>
+  //   <p>Phone Number: ${user.phoneNumber}</p>
+  // `;
+
+  const showDetailsButton = document.getElementById('showDetailsButton');
+  showDetailsButton.addEventListener('click', function(event) {
+    event.preventDefault();
+    userDetailsDiv.style.display = 'block';
+  });
+
+  // WhatsApp button click event
+  document.getElementById("placeOrder").addEventListener("click", function() {
+    var table = document.getElementById("cartTable");
+    var rows = table.getElementsByTagName("tr");
+    var columns = table.getElementsByTagName("th");
+    var message = "";
+
+    // Adding user details to the message
+    message += "I'm, " + user.username + "!\n";
+    message += "Happy to Purchase with Master Tech \n";
+    message += "Phone Number: " + user.phoneNumber + "\n";
+    message += "Location: " + user.address + "\n";
+    message += "City: " + user.city + "\n";
+    message += "Pincode: " + user.pincode + "\n\n";
+
+    // Iterating through each row to extract the details
+    for (var i = 0; i < rows.length; i++) {
+      var cells = rows[i].getElementsByTagName("td");
+      for (var j = 0; j < cells.length; j++) {
+        var columnName = columns[j].innerText;
+        var cellValue = cells[j].innerText;
+
+        if (columnName === "Flipkart Link") {
+          var linkElement = cells[j].querySelector("a");
+          if (linkElement) {
+            var link = linkElement.href;
+            cellValue = link;
+          }
+        }
+
+        message += columnName + ": " + cellValue + "\n";
+      }
+      message += "\n";
+    }
+
+    var phoneNumber = "9092501147"; // Replace with your desired phone number
+    var encodedMessage = encodeURIComponent(message);
+    var whatsappUrl = "https://wa.me/" + phoneNumber + "?text=" + encodedMessage;
+    window.open(whatsappUrl);
+  });
+} else {
+  const userDetailsDiv = document.getElementById('userDetails');
+  userDetailsDiv.style.display = 'none';
+}
+
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+  </body>
+</html>

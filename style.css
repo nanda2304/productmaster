@@ -1,0 +1,40 @@
+.container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+    background-color: #f2f2f2;
+  }
+  
+  h1 {
+    margin-bottom: 20px;
+  }
+  
+  input {
+    margin-bottom: 10px;
+    width: 100%;
+    padding: 10px;
+  }
+  
+  button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+  }
+  
+  #createAccountLink {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .create-account {
+    margin-top: 20px;
+  }
+  
+  #createAccountForm {
+    margin-top: 20px;
+  }
+  

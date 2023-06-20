@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://apis.google.com/js/api.js"></script>
+
+  <title>Login Page</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body  class="container-fluid">
+  <div class="container">
+    <h1>Login</h1>
+    <form id="loginForm">
+      <input type="text" class="form-control" id="username" placeholder="Username" required>
+      <input type="password" class="form-control" id="password" placeholder="Password" required>
+      <button class="btn btn-primary" type="submit">Login</button>
+      <p id="message"></p>
+      <p class="create-account">Don't have an account? <a href="#" id="createAccountLink">Create one</a></p>
+      <p class="forgot-account"><a href="#" id="forgotAccountLink">Forgot username or password?</a></p>
+    </form>
+    
+    <form id="createAccountForm" style="display: none;" >
+      <p class="create-account">Already have an account? <a href="#" id="loginLink">Log In</a></p>
+      <input type="text" class="form-control" id="newUsername" placeholder="New Username" name="name" required>
+      <input type="password" class="form-control" id="newPassword" placeholder="New Password" required>
+      <input type="email" class="form-control" id="newEmail" placeholder="Email" name="email" required>
+      <input type="date" class="form-control" id="newDateOfBirth" name="dob" required>
+      <input type="tel" class="form-control" id="newPhoneNumber" name="phone" placeholder="Phone Number" required>
+      <input type="text" class="form-control" id="newAddress" name="address" placeholder="Complete Address" required>
+      <input type="text" class="form-control" id="newCity" name="city" placeholder="City" required>
+      <input type="text" class="form-control" id="newPincode" name="pincode" placeholder="Pincode" required>
+
+      <!-- Add other fields if needed -->
+      <input  type="submit">
+      <p id="createAccountMessage"></p>
+    </form>
+    <form id="forgotAccountForm" style="display: none;">
+      <p class="create-account"><a href="#" id="loginLink2">Log In</a></p>
+      <input type="date" class="form-control" id="forgotDateOfBirth" required>
+      <input type="email" class="form-control" id="forgotEmail" placeholder="Email" required>
+      <button class="btn btn-primary" type="submit">Retrieve Account</button>
+      <p id="forgotAccountMessage"></p>
+    </form>
+  </div>
+  <!-- <form action="https://script.google.com/macros/s/AKfycbwNPY6NYm6k-gjdzcneybDaRag8iNsEVcnxhRLfKOLPTf-XiGppJx_uehvRiA6Gk-tr/exec" method="post">
+    <input type="text" name="name" placeholder="Name"><br><br>
+    <input type="email" name="email" placeholder="Email"><br><br>
+    <input type="tel" name="phone" placeholder="Phone"><br><br>
+    <input type="submit">
+  </form> -->
+  <form hidden id="AAA"  action="https://script.google.com/macros/s/AKfycbwg0V8Qfd8qYMQQDtqtVTlF5EZ54pSUSFBou8WfA0lX4wmxd0Y7SJ_BGahS_srWuhlF/exec" method="post">
+
+    <input type="text" class="form-control" placeholder="New Username" name="name" required>
+    <input type="password" class="form-control" placeholder="New Password" required>
+    <input type="email" class="form-control" placeholder="Email" name="email" required>
+    <input type="date" class="form-control" name="dob" required>
+    <input type="tel" class="form-control" name="phone" placeholder="Phone Number" required>
+    <input type="text" class="form-control" name="address" placeholder="Complete Address" required>
+    <input type="text" class="form-control" name="city" placeholder="City" required>
+    <input type="text" class="form-control" name="pincode" placeholder="Pincode" required>
+  
+    <!-- Add other fields if needed -->
+    <input type="submit">
+  </form>
+  <script>
+    $(document).ready(function() {
+  // Add an event listener to the first form's submit button
+  $('#createAccountForm').on('submit', function(event) {
+    event.preventDefault(); // Prevent the form from submitting
+
+    // Get the values from the input fields in the first form
+    var newUsername = $('#newUsername').val();
+    var newPassword = $('#newPassword').val();
+    var newEmail = $('#newEmail').val();
+    var newDateOfBirth = $('#newDateOfBirth').val();
+    var newPhoneNumber = $('#newPhoneNumber').val();
+    var newAddress = $('#newAddress').val();
+    var newCity = $('#newCity').val();
+    var newPincode = $('#newPincode').val();
+
+    // Set the input values from the first form to the corresponding fields in the second form
+    $('#AAA input[name="name"]').val(newUsername);
+    $('#AAA input[name="password"]').val(newPassword);
+    $('#AAA input[name="email"]').val(newEmail);
+    $('#AAA input[name="dob"]').val(newDateOfBirth);
+    $('#AAA input[name="phone"]').val(newPhoneNumber);
+    $('#AAA input[name="address"]').val(newAddress);
+    $('#AAA input[name="city"]').val(newCity);
+    $('#AAA input[name="pincode"]').val(newPincode);
+
+    // Submit the second form
+    $('#AAA').submit();
+  });
+});
+
+  </script>
+  <script src="script.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
